@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinanceHub India | Smart Financial Calculators</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#0f172a;
+margin:0;
+color:white;
+}
+
+header{
+text-align:center;
+padding:25px;
+font-size:28px;
+font-weight:bold;
+background:#020617;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+padding:25px;
+margin-bottom:25px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,0.4);
+}
+
+h2{
+margin-top:0;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border-radius:8px;
+border:none;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#3b82f6;
+border:none;
+border-radius:8px;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#2563eb;
+}
+
+.result{
+margin-top:12px;
+font-size:18px;
+font-weight:bold;
+}
+
+footer{
+text-align:center;
+padding:20px;
+opacity:0.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+FinanceHub India
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>EMI Calculator</h2>
+
+<input id="loan" placeholder="Loan Amount">
+
+<input id="rate" placeholder="Interest Rate %">
+
+<input id="months" placeholder="Loan Tenure (Months)">
+
+<button onclick="calculateEMI()">Calculate EMI</button>
+
+<div class="result" id="emiResult"></div>
+</div>
+
+
+<div class="card">
+<h2>SIP Calculator</h2>
+
+<input id="sipAmount" placeholder="Monthly Investment">
+
+<input id="sipRate" placeholder="Expected Return %">
+
+<input id="sipYears" placeholder="Years">
+
+<button onclick="calculateSIP()">Calculate SIP</button>
+
+<div class="result" id="sipResult"></div>
+</div>
+
+
+<div class="card">
+<h2>FD Calculator</h2>
+
+<input id="fdAmount" placeholder="Investment Amount">
+
+<input id="fdRate" placeholder="Interest Rate %">
+
+<input id="fdYears" placeholder="Years">
+
+<button onclick="calculateFD()">Calculate FD</button>
+
+<div class="result" id="fdResult"></div>
+</div>
+
+
+<div class="card">
+<h2>Compound Interest Calculator</h2>
+
+<input id="ciAmount" placeholder="Principal Amount">
+
+<input id="ciRate" placeholder="Interest Rate %">
+
+<input id="ciYears" placeholder="Years">
+
+<button onclick="calculateCI()">Calculate</button>
+
+<div class="result" id="ciResult"></div>
+</div>
+
+</div>
+
+<footer>
+© 2026 FinanceHub India | Smart Financial Tools
+</footer>
+
+<script>
+
+function calculateEMI(){
+
+let P=parseFloat(document.getElementById("loan").value);
+let r=parseFloat(document.getElementById("rate").value)/12/100;
+let n=parseFloat(document.getElementById("months").value);
+
+let emi=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+
+document.getElementById("emiResult").innerHTML=
+"Monthly EMI : ₹ "+emi.toFixed(2);
+}
+
+
+
+function calculateSIP(){
+
+let monthly=parseFloat(document.getElementById("sipAmount").value);
+let rate=parseFloat(document.getElementById("sipRate").value)/100/12;
+let months=parseFloat(document.getElementById("sipYears").value)*12;
+
+let futureValue=
+monthly*((Math.pow(1+rate,months)-1)/rate)*(1+rate);
+
+document.getElementById("sipResult").innerHTML=
+"Future Value : ₹ "+futureValue.toFixed(2);
+}
+
+
+
+function calculateFD(){
+
+let P=parseFloat(document.getElementById("fdAmount").value);
+let r=parseFloat(document.getElementById("fdRate").value)/100;
+let t=parseFloat(document.getElementById("fdYears").value);
+
+let maturity=P*Math.pow((1+r),t);
+
+document.getElementById("fdResult").innerHTML=
+"Maturity Amount : ₹ "+maturity.toFixed(2);
+}
+
+
+
+function calculateCI(){
+
+let P=parseFloat(document.getElementById("ciAmount").value);
+let r=parseFloat(document.getElementById("ciRate").value)/100;
+let t=parseFloat(document.getElementById("ciYears").value);
+
+let amount=P*Math.pow((1+r),t);
+
+document.getElementById("ciResult").innerHTML=
+"Total Amount : ₹ "+amount.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>
