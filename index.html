@@ -1,142 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>FinanceHub India | Free Financial Calculators</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Free online financial calculators for India. EMI, SIP, FD and CAGR calculator.">
+<title>FinanceHub India – Free EMI, SIP & FD Calculators</title>
+
 <style>
-body{
-margin:0;
-font-family:Arial;
-background:#0f172a;
-color:white;
-text-align:center;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+    color: white;
+    text-align: center;
 }
-header{
-background:#020617;
-padding:25px;
-font-size:26px;
-font-weight:bold;
+
+header {
+    padding: 20px;
+    font-size: 22px;
+    font-weight: bold;
 }
-.container{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-padding:40px 20px;
+
+.section-title {
+    font-size: 20px;
+    margin-bottom: 30px;
 }
-.card{
-background:#1e293b;
-padding:30px;
-border-radius:12px;
-width:260px;
-box-shadow:0 5px 15px rgba(0,0,0,0.3);
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
 }
-.card h3{
-margin-top:0;
+
+.card {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: 0.3s;
 }
-button{
-padding:12px 20px;
-background:#2563eb;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
+
+.card:hover {
+    transform: translateY(-5px);
 }
-button:hover{
-background:#1d4ed8;
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #2563eb;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
 }
-footer{
-background:#020617;
-padding:20px;
-font-size:14px;
+
+button:hover {
+    background: #1d4ed8;
 }
-@media(max-width:600px){
-.container{
-flex-direction:column;
-align-items:center;
-}
+
+footer {
+    margin-top: 40px;
+    padding: 15px;
+    background: #020617;
+    font-size: 14px;
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<header>FinanceHub India</header>
+<header>
+FinanceHub India
+</header>
 
-<h2 style="margin-top:30px;">Free Financial Calculators</h2>
+<div class="section-title">
+Free Financial Calculators
+</div>
 
 <div class="container">
 
 <div class="card">
 <h3>EMI Calculator</h3>
-<a href="emi-calculator.html"><button>Open</button></a>
+<a href="emi.html"><button>Open</button></a>
 </div>
 
 <div class="card">
 <h3>SIP Calculator</h3>
-<a href="sip-calculator.html"><button>Open</button></a>
+<a href="sip.html"><button>Open</button></a>
 </div>
 
 <div class="card">
 <h3>FD Calculator</h3>
-<a href="fd-calculator.html"><button>Open</button></a>
+<a href="fd.html"><button>Open</button></a>
 </div>
 
 <div class="card">
 <h3>CAGR Calculator</h3>
-<a href="cagr-calculator.html"><button>Open</button></a>
+<a href="cagr.html"><button>Open</button></a>
 </div>
 
 </div>
 
 <footer>
 © 2026 FinanceHub India | Smart Financial Tools
-</footer>
-
-</body>
-</html>}
-footer{
-margin-top:40px;
-padding:20px;
-background:#020617;
-font-size:14px;
-}
-</style>
-</head>
-
-<body>
-
-<header>FinanceHub India</header>
-
-<div class="container">
-
-<h2>Free Financial Calculators</h2>
-
-<div class="card">
-<h3>EMI Calculator</h3>
-<a href="emi-calculator.html"><button>Open</button></a>
-</div>
-
-<div class="card">
-<h3>SIP Calculator</h3>
-<a href="#"><button>Open</button></a>
-</div>
-
-<div class="card">
-<h3>FD Calculator</h3>
-<a href="#"><button>Open</button></a>
-</div>
-
-<div class="card">
-<h3>CAGR Calculator</h3>
-<a href="#"><button>Open</button></a>
-</div>
-
-</div>
-
-<footer>
-© 2026 FinanceHub India
 </footer>
 
 </body>
