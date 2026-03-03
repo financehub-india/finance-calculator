@@ -1,39 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>EMI Calculator India | FinanceHub</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator India</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            padding: 40px 20px;
+            background: #1e293b;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            width: 320px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+        }
+        button {
+            padding: 10px 20px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #334155;
+            border-radius: 8px;
+        }
+        h2 { margin-bottom: 20px; color: #60a5fa; }
+    </style>
+</head>
+<body>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="container">
+    <h2>EMI Calculator</h2>
+    <input type="number" id="loanAmount" placeholder="Loan Amount (₹)">
+    <input type="number" id="interestRate" placeholder="Interest Rate (%)">
+    <input type="number" id="loanTenure" placeholder="Tenure (Years)">
+    <button onclick="calculateEMI()">Calculate</button>
 
-<style>
-body{
-margin:0;
-font-family:Arial;
-background:#0f172a;
-color:white;
-}
+    <div class="result" id="resultArea" style="display:none;">
+        <p>Monthly EMI: <br><strong id="emiDisplay" style="font-size: 1.5em; color: #4ade80;"></strong></p>
+        <p>Total Interest: <span id="interestDisplay"></span></p>
+    </div>
+</div>
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:40px 20px;
-}
+<script>
+    function calculateEMI() {
+        const P = parseFloat(document.getElementById('loanAmount').value);
+        const annualRate = parseFloat(document.getElementById('interestRate').value);
+        const years = parseFloat(document.getElementById('loanTenure').value);
 
-h1{
-text-align:center;
-margin-bottom:40px;
-}
+        if (P && annualRate && years) {
+            const r = annualRate / (12 * 100); // Monthly interest rate
+            const n = years * 12; // Total months
 
-.calculator{
-display:flex;
-flex-wrap:wrap;
-gap:40px;
-justify-content:space-between;
-}
+            // EMI Formula: P * r * (1+r)^n / ((1+r)^n - 1)
+            const emi = P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+            const totalAmount = emi * n;
+            const totalInterest = totalAmount - P;
 
-.left{
-flex:1;
+            document.getElementById('emiDisplay').innerText = "₹" + emi.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            document.getElementById('interestDisplay').innerText = "₹" + totalInterest.toLocaleString('en-IN', {maximumFractionDigits: 0});
+            document.getElementById('resultArea').style.display = 'block';
+        } else {
+            alert("Please enter all values");
+        }
+    }
+</script>
+
+</body>
+</html>
 min-width:300px;
 }
 
