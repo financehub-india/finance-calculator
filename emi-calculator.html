@@ -1,40 +1,190 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Loan Calculator India</title>
+<title>EMI Calculator India | FinanceHub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <style>
 body{
+margin:0;
 font-family:Arial;
 background:#0f172a;
 color:white;
-text-align:center;
-margin:0;
 }
+
 .container{
+max-width:1100px;
+margin:auto;
 padding:40px 20px;
 }
-input{
-padding:10px;
-margin:10px;
-width:220px;
-border-radius:6px;
-border:none;
+
+h1{
+text-align:center;
+margin-bottom:40px;
 }
-button{
-padding:10px 20px;
-background:#2563eb;
-color:white;
-border:none;
-border-radius:6px;
-cursor:pointer;
+
+.calculator{
+display:flex;
+flex-wrap:wrap;
+gap:40px;
+justify-content:space-between;
 }
-.result{
+
+.left{
+flex:1;
+min-width:300px;
+}
+
+.right{
+flex:1;
+min-width:300px;
+text-align:center;
+}
+
+label{
+display:block;
 margin-top:20px;
-font-size:18px;
-font-weight:bold;
+margin-bottom:5px;
 }
+
+input[type=range]{
+width:100%;
+}
+
+.value-box{
+background:#1e293b;
+padding:10px;
+border-radius:6px;
+margin-top:5px;
+text-align:right;
+}
+
+.result-box{
+margin-top:30px;
+background:#1e293b;
+padding:20px;
+border-radius:10px;
+}
+
+.result-box p{
+margin:8px 0;
+}
+
+canvas{
+max-width:300px;
+margin:auto;
+}
+
 a{
+color:#38bdf8;
+text-decoration:none;
+display:block;
+margin-top:40px;
+text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>EMI Calculator</h1>
+
+<div class="calculator">
+
+<div class="left">
+
+<label>Loan Amount</label>
+<input type="range" id="loan" min="10000" max="5000000" step="10000" value="1000000" oninput="calculateEMI()">
+<div class="value-box">₹ <span id="loanValue">1000000</span></div>
+
+<label>Interest Rate (%)</label>
+<input type="range" id="rate" min="1" max="20" step="0.1" value="6.5" oninput="calculateEMI()">
+<div class="value-box"><span id="rateValue">6.5</span> %</div>
+
+<label>Loan Tenure (Years)</label>
+<input type="range" id="years" min="1" max="30" step="1" value="5" oninput="calculateEMI()">
+<div class="value-box"><span id="yearValue">5</span> Years</div>
+
+<div class="result-box">
+<p><strong>Monthly EMI:</strong> ₹ <span id="emi"></span></p>
+<p><strong>Total Interest:</strong> ₹ <span id="totalInterest"></span></p>
+<p><strong>Total Payment:</strong> ₹ <span id="totalPayment"></span></p>
+</div>
+
+</div>
+
+<div class="right">
+<canvas id="emiChart"></canvas>
+</div>
+
+</div>
+
+<a href="index.html">← Back to Home</a>
+
+</div>
+
+<script>
+
+let chart;
+
+function calculateEMI(){
+
+let P = parseFloat(document.getElementById("loan").value);
+let annualRate = parseFloat(document.getElementById("rate").value);
+let years = parseFloat(document.getElementById("years").value);
+
+document.getElementById("loanValue").innerText = P;
+document.getElementById("rateValue").innerText = annualRate;
+document.getElementById("yearValue").innerText = years;
+
+let R = annualRate/12/100;
+let N = years*12;
+
+let EMI = (P*R*Math.pow(1+R,N))/(Math.pow(1+R,N)-1);
+
+let totalPayment = EMI*N;
+let totalInterest = totalPayment - P;
+
+document.getElementById("emi").innerText = EMI.toFixed(0);
+document.getElementById("totalInterest").innerText = totalInterest.toFixed(0);
+document.getElementById("totalPayment").innerText = totalPayment.toFixed(0);
+
+updateChart(P,totalInterest);
+}
+
+function updateChart(principal, interest){
+
+if(chart) chart.destroy();
+
+let ctx = document.getElementById("emiChart");
+
+chart = new Chart(ctx, {
+type: 'doughnut',
+data: {
+labels: ['Principal', 'Interest'],
+datasets: [{
+data: [principal, interest],
+backgroundColor: ['#2563eb', '#38bdf8']
+}]
+},
+options:{
+plugins:{
+legend:{labels:{color:'white'}}
+}
+}
+});
+}
+
+calculateEMI();
+
+</script>
+
+</body>
+</html>a{
 color:#38bdf8;
 text-decoration:none;
 }
