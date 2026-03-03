@@ -12,7 +12,7 @@ font-family:'Segoe UI', Arial, sans-serif;
 background:#f3f4f6;
 }
 
-/* TOP HEADER */
+/* HEADER */
 .topbar{
 background:white;
 padding:15px 25px;
@@ -20,7 +20,7 @@ box-shadow:0 2px 6px rgba(0,0,0,0.05);
 font-weight:600;
 }
 
-/* MAIN CALCULATOR CARD */
+/* MAIN CARD */
 .container{
 max-width:600px;
 margin:60px auto;
@@ -60,28 +60,45 @@ border-radius:8px;
 color:white;
 font-size:15px;
 cursor:pointer;
+transition:0.3s;
 }
 
 button:hover{
 background:#1d4ed8;
 }
 
+/* RESULT BOX (EMI STYLE) */
 .result-box{
 margin-top:20px;
-background:#f9fafb;
-padding:15px;
+background:#f3f4f6;
+padding:18px 20px;
 border-radius:10px;
-text-align:left;
 font-size:15px;
+text-align:left;
 }
 
-.result-box div{
+.result-row{
 display:flex;
 justify-content:space-between;
-margin:8px 0;
+align-items:center;
+padding:8px 0;
+border-bottom:1px solid #e5e7eb;
 }
 
-/* CONTENT SECTION SAME AS EMI */
+.result-row:last-child{
+border-bottom:none;
+}
+
+.result-label{
+color:#374151;
+}
+
+.result-value{
+font-weight:600;
+color:#111827;
+}
+
+/* CONTENT SECTION SAME STYLE */
 .content-section{
 max-width:900px;
 margin:60px auto;
@@ -122,9 +139,22 @@ margin-top:40px;
 <button onclick="calculateSIP()">Calculate SIP</button>
 
 <div class="result-box" id="result" style="display:none;">
-<div><span>Total Investment</span><strong>₹ <span id="invested"></span></strong></div>
-<div><span>Estimated Returns</span><strong>₹ <span id="returns"></span></strong></div>
-<div><span>Total Value</span><strong>₹ <span id="total"></span></strong></div>
+
+<div class="result-row">
+<span class="result-label">Total Investment</span>
+<span class="result-value">₹ <span id="invested"></span></span>
+</div>
+
+<div class="result-row">
+<span class="result-label">Estimated Returns</span>
+<span class="result-value">₹ <span id="returns"></span></span>
+</div>
+
+<div class="result-row">
+<span class="result-label">Total Value</span>
+<span class="result-value">₹ <span id="total"></span></span>
+</div>
+
 </div>
 
 <div style="margin-top:20px;">
@@ -133,13 +163,14 @@ margin-top:40px;
 
 </div>
 
-<!-- EXACT SAME STYLE CONTENT BOX -->
+<!-- SEO CONTENT SAME AS EMI STYLE -->
+
 <div class="content-section">
 
 <h3>What is SIP?</h3>
 <p>
-SIP (Systematic Investment Plan) is a disciplined method of investing in mutual funds.
-You invest a fixed amount every month and benefit from the power of compounding over time.
+SIP (Systematic Investment Plan) is a disciplined way of investing in mutual funds.
+You invest a fixed amount monthly and benefit from the power of compounding over time.
 </p>
 
 <h3>How SIP Returns Are Calculated?</h3>
